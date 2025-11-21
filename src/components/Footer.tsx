@@ -1,12 +1,22 @@
 import { Shield, Github, Twitter, Linkedin, Mail } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useToast } from "@/hooks/use-toast";
 
 const Footer = () => {
+  const { toast } = useToast();
+
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
     }
+  };
+
+  const handleResourceClick = (resource: string) => {
+    toast({
+      title: "Coming Soon",
+      description: `${resource} will be available in the next update.`,
+    });
   };
 
   return (
@@ -70,24 +80,36 @@ const Footer = () => {
             <h3 className="font-semibold text-foreground mb-4">Resources</h3>
             <ul className="space-y-2">
               <li>
-                <a href="#" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                <button
+                  onClick={() => handleResourceClick("Documentation")}
+                  className="text-sm text-muted-foreground hover:text-primary transition-colors"
+                >
                   Documentation
-                </a>
+                </button>
               </li>
               <li>
-                <a href="#" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                <button
+                  onClick={() => handleResourceClick("API Reference")}
+                  className="text-sm text-muted-foreground hover:text-primary transition-colors"
+                >
                   API Reference
-                </a>
+                </button>
               </li>
               <li>
-                <a href="#" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                <button
+                  onClick={() => handleResourceClick("Support")}
+                  className="text-sm text-muted-foreground hover:text-primary transition-colors"
+                >
                   Support
-                </a>
+                </button>
               </li>
               <li>
-                <a href="#" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                <button
+                  onClick={() => handleResourceClick("Privacy Policy")}
+                  className="text-sm text-muted-foreground hover:text-primary transition-colors"
+                >
                   Privacy Policy
-                </a>
+                </button>
               </li>
             </ul>
           </div>
@@ -97,29 +119,44 @@ const Footer = () => {
             <h3 className="font-semibold text-foreground mb-4">Connect</h3>
             <div className="flex space-x-4">
               <a
-                href="#"
+                href="https://github.com"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary hover:bg-primary hover:text-primary-foreground transition-colors"
+                aria-label="GitHub"
               >
                 <Github className="h-5 w-5" />
               </a>
               <a
-                href="#"
+                href="https://twitter.com"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary hover:bg-primary hover:text-primary-foreground transition-colors"
+                aria-label="Twitter"
               >
                 <Twitter className="h-5 w-5" />
               </a>
               <a
-                href="#"
+                href="https://linkedin.com"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary hover:bg-primary hover:text-primary-foreground transition-colors"
+                aria-label="LinkedIn"
               >
                 <Linkedin className="h-5 w-5" />
               </a>
-              <a
-                href="#"
+              <button
+                onClick={() => {
+                  toast({
+                    title: "Contact Us",
+                    description: "Send an email to: contact@blockland-registry.com",
+                  });
+                }}
                 className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary hover:bg-primary hover:text-primary-foreground transition-colors"
+                aria-label="Email"
               >
                 <Mail className="h-5 w-5" />
-              </a>
+              </button>
             </div>
           </div>
         </div>
